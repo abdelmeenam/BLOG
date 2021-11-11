@@ -25,13 +25,16 @@
                     </a>
                 </div>
                 <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
+                    <a class="no-underline hover:underline" href="{{ route('home') }}">{{ __('home') }}</a>
+                    <a class="no-underline hover:underline" href="{{ url('/blog') }}">{{ __('blog') }}</a>
                     @guest
+
                         <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @if (Route::has('register'))
                             <a class="no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
-                        <span>{{ Auth::user()->name }}</span>
+                        <span> {{ Auth::user()->name }}</span>
 
                         <a href="{{ route('logout') }}"
                            class="no-underline hover:underline"
@@ -45,12 +48,14 @@
             </div>
         </header>
 
+        <!--  Main content starts -->
         <div>
             @yield('content')
         </div>
         <div>
             @include('layouts.footer')
         </div>
+        <!--  Main content ends -->
     </div>
 </body>
 </html>
