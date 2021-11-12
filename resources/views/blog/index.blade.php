@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<!-- check If you logged in you could create a post -->
+<!-- check If there are any errors-->
 @section('content')
 <div class="w-4/5 m-auto text-center">
     <div class="py-15 border-b border-gray-200">
@@ -9,8 +9,17 @@
         </h1>
     </div>
 </div>
-<!-- check If you logged in you could create a post -->
+<!--  end check -->
 
+<!-- check If post has been added -->
+@if (session()->has('message'))
+    <div class="w-4/5 m-auto mt-10 pl-2">
+        <p class="w-1/6 mb-4 text-gray-50 bg-green-500 rounded-2xl py-4">
+            {{ session()->get('message') }}
+        </p>
+    </div>
+@endif
+<!--  end check -->
 
 
 <!-- check If you logged in you could create a post -->
@@ -24,7 +33,6 @@
     </div>
 @endif
 <!--  end check -->
-
 
 <!-- view all posts from database -->
 @foreach ($posts as $post)
@@ -79,7 +87,5 @@
         </div>
     </div>    
 @endforeach
-
-
 
 @endsection
