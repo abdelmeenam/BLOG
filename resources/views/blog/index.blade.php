@@ -46,7 +46,7 @@
             </h2>
 
             <span class="text-gray-500">
-                <!-- print the user who created the blog -->
+                <!-- print the user who created the blog via post model -->
                 By <span class="font-bold italic text-gray-800">{{ $post->user->name }}</span>
                 , Created on {{ date('jS M Y', strtotime($post->updated_at)) }}
             </span>
@@ -59,6 +59,7 @@
                 Keep Reading
             </a>
 
+            <!--first check if user logged in by isset &  Check if the auth user is the same who posted this post -->
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
                 <span class="float-right">
                     <a 
@@ -67,14 +68,11 @@
                         Edit
                     </a>
                 </span>
-
                 <span class="float-right">
-                     <form 
-                        action="/blog/{{ $post->slug }}"
-                        method="POST">
+                     <form action="/blog/{{ $post->slug }}" method="POST">
                         @csrf
                         @method('delete')
-
+                        
                         <button
                             class="text-red-500 pr-3"
                             type="submit">
