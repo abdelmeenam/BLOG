@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
-                    <a class="no-underline hover:underline" href="{{ route('home') }}">{{ __('home') }}</a>
+                    <a class="no-underline hover:underline" href="{{ url('/home') }}">{{ __('home') }}</a>
                     <a class="no-underline hover:underline" href="{{ url('/blog') }}">{{ __('blog') }}</a>
 
                     @guest
@@ -34,7 +34,7 @@
                             <a class="no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
-                        <span> {{ Auth::user()->name }}</span>
+                        <span> {{ Auth()->user()->name }}</span>
                         <a href="{{ route('logout') }}"
                             class="no-underline hover:underline"
                             onclick="event.preventDefault();
